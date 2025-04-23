@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice #{{ invoice.id }}</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 10px;
+      }
+      .invoice-box {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #eee;
+      }
+      #invoice-table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      #invoice-table thead {
+        font-weight: bold;
+        background-color: hsl(203, 100%, 75%);
+        padding: 5px;
+      }
+      #invoice-table thead td {
+        vertical-align: middle;
+      }
+      #invoice-table td {
+        padding: 5px;
+        vertical-align: top;
+        border: 1px solid #ddd;
+      }
+      #invoice-table tr.heading td {
+        background: #f2f2f2;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+      }
+      #invoice-table tr.item td {
+        border-bottom: 1px solid #eee;
+      }
+      #invoice-table tr.total td:nth-child(2) {
+        border-top: 2px solid #eee;
+        font-weight: bold;
+      }
+      hr {
+        border: 1px solid #bfbfbf;
+        width: 100%;
+        height: 1px;
+      }
+      #logo {
+        width: 100px;
+        margin-bottom: 10px;
+        /* height: 100px; */
+      }
+      .inline-container {
+        width: 100%;
+      }
+      .inline-left {
+        display: inline-block;
+        width: 60%;
+      }
+      .inline-right {
+        display: inline-block;
+        width: 39%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invoice-box">
+      <img id="logo" src="data:image/png;base64,{{ logo_base64 }}" alt="Logo" />
+      <div class="inline-container">
+        <p class="inline-left">
+          <strong>From</strong><br />
+          <br />
+          PIVOT-AL.AI LLC<br />
+          7901 4TH ST N STE 300<br />
+          ST. PETERSBURG<br />
+          United States of America<br />
+          davidfinkelshteyn@pivot-al.ai<br />
+          pivot-al.ai
+        </p>
+        <p class="inline-right">
+          <strong>To</strong><br />
+          <br />
+          PIVOT-AL.AI LLC<br />
+          7901 4TH ST N STE 300<br />
+          ST. PETERSBURG<br />
+          United States of America<br />
+          davidfinkelshteyn@pivot-al.ai<br />
+          pivot-al.ai
+        </p>
+      </div>
+
+      <table id="invoice-table">
+        <thead class="heading">
+          <td>Project</td>
+          <td>Developer</td>
+          <td>Hours</td>
+          <td>Per Hour</td>
+          <td>Cost</td>
+        </thead>
+        {% for item in invoice_items %}
+        <tr class="item">
+          <td>{{ item.project_title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.hours }}</td>
+          <td>${{ item.per_hour }}</td>
+          <td>${{ item.cost }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="5"><hr /></td>
+        </tr>
+        <tr class="total">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <strong>Grand Total:</strong>
+          </td>
+          <td>grant_total</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

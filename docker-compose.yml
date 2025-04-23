@@ -1,0 +1,21 @@
+services:
+  internal_ops:
+    build: .
+    volumes:
+      - .:/app
+    command: pipenv run python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+  celery:
+    build: .
+    volumes:
+      - .:/app
+    command: pipenv run celery --app internal_ops worker --loglevel=info --beat
+    env_file:
+      - .env
+  redis:
+    image: redis:latest
+    expose:
+      - "6379"

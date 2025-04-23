@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+celery = "*"
+redis = "*"
+djangorestframework = "*"
+django-widget-tweaks = "*"
+django-rest-knox = "*"
+django-filter = "*"
+drf-spectacular = "*"
+pdfkit = "*"
+pytz = "*"
+faker = "*"
+factory-boy = "*"
+django-simple-history = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

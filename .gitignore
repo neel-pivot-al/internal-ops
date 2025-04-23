@@ -1,0 +1,11 @@
+.env
+*.log
+*.sqlite3
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+celery.log
+*.rdb
+
+__pycache__/
