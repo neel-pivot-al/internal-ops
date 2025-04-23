@@ -33,6 +33,8 @@ class UserAdmin(BaseUserAdmin):
     autocomplete_fields = ("skills",)
 
     def get_fieldsets(self, request, obj=None):
+        if obj is None:
+            return super().get_fieldsets(request, obj)
         fieldsets = (
             (None, {"fields": ("username", "password")}),
             ("Personal info", {"fields": ("first_name", "last_name", "email", "role")}),
